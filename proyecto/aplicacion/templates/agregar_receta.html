@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    <title>Agregar Receta</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Agregar Receta</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.titulo.id_for_label }}">Título</label>
+                        {{ form.titulo }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.categoria.id_for_label }}">Categoría</label>
+                        {{ form.categoria }}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="{{ form.ingredientes.id_for_label }}">Ingredientes</label>
+                                {{ form.ingredientes }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.instrucciones.id_for_label }}">Instrucciones</label>
+                                {{ form.instrucciones }}
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Agregar Receta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}
+

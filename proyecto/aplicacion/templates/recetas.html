@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    <title>Recetas</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Recetas</h1>
+
+    <form action="{% url 'ver_recetas' %}" method="GET" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar recetas">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for receta in recetas %}
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ receta.titulo }}</h2>
+                    <p class="card-text"><strong>Categoría:</strong> {{ receta.categoria }}</p>
+                    <p class="card-text"><strong>Ingredientes:</strong></p>
+                    <p class="card-text">{{ receta.ingredientes|linebreaks }}</p>
+                    <p class="card-text"><strong>Instrucciones:</strong></p>
+                    <p class="card-text">{{ receta.instrucciones|linebreaks }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'detalle_receta' receta.id %}" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'agregar_receta' %}" class="btn btn-success">Agregar una nueva receta</a>
+    <a href="{% url 'inicio' %}" class="btn btn-secondary">Volver a la página de inicio</a>
+{% endblock contenido %}
