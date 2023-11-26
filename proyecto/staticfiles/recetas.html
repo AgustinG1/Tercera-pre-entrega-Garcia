@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    <title>Recetas</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Recetas</h1>
+
+    <form action="{% url 'ver_recetas' %}" method="GET" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar recetas">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+    <div class="row">
+        {% if recetas %}
+            {% for receta in recetas %}
+                <div class="col-md-3">
+                   
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col">
+                <p>No hay recetas todavía.</p>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <div class="row">
+        {% for receta in recetas %}
+        <div class="col-md-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2 class="card-title">{{ receta.titulo }}</h2>
+                    {% if receta.imagen %}
+                    <img src="{{ receta.imagen.url }}" alt="Imagen de la receta" width="200" height="200">
+                    {% endif %}
+                    <p class="card-text"><strong>Categoría:</strong> {{ receta.categoria }}</p>
+                    <p class="card-text"><strong>Ingredientes:</strong></p>
+                    <p class="card-text">{{ receta.ingredientes|safe|slice:":100" }}{% if receta.ingredientes|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}"></a>{% endif %}</p>
+                    <p class="card-text"><strong>Instrucciones:</strong></p>
+                    <p class="card-text">{{ receta.instrucciones|safe|slice:":100" }}{% if receta.instrucciones|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}">Ver detalles</a>{% endif %}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'detalle_receta' receta.id %}" class="btn btn-primary mr-2">Ver detalles</a>
+                    {% if user == receta.creador %}
+                    <a href="{% url 'editar_receta' receta.id %}" class="btn btn-warning mr-2">Editar</a>
+                    {% endif %}
+                    <form action="{% url 'eliminar_receta' receta.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        {% if user == receta.creador %}
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'agregar_receta' %}" class="btn btn-success">Agregar una nueva receta</a>
+    <a href="{% url 'inicio' %}" class="btn btn-secondary">Volver a la página de inicio</a>
+{% endblock contenido %}

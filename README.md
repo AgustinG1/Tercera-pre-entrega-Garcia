@@ -22,9 +22,13 @@ python manage.py createsuperuser
 ```
 
 # Superusuario de pruebas
-username:admin
-contraseña:example123
+'usuario: admin1
+Email address: admin@example.com
+Password: example1234
+
 
 # Usuarios normales
 ??
+'usuario: admin2
+Password: example123456
 copyright Alberto Agustin Garcia 2023

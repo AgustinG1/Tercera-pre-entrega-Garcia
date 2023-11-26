@@ -1,18 +1,22 @@
 from django import forms
 from .models import Receta, Comentario
+from ckeditor.widgets import CKEditorWidget
 
 class RecetaForm(forms.ModelForm):
     class Meta:
         model = Receta
-        fields = ['titulo', 'categoria', 'ingredientes', 'instrucciones']
-        
+        fields = ['titulo', 'subtitulo', 'categoria', 'ingredientes', 'instrucciones', 'imagen']
+        widgets = {
+            'ingredientes': CKEditorWidget(),  
+            'instrucciones': CKEditorWidget(),  
+        }
+
+
 
 class ComentarioForm(forms.ModelForm):
     class Meta:
         model = Comentario
-        fields = ['autor', 'contenido']
-    
-    widgets = {
-        'autor': forms.TextInput(attrs={'class': 'form-control'}),
-        'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
-    }
+        fields = ['contenido']
+        widgets = {
+            'contenido': CKEditorWidget(),
+        }

@@ -13,24 +13,57 @@
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
     </form>
-
     <div class="row">
-        {% for receta in recetas %}
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ receta.titulo }}</h2>
-                    <p class="card-text"><strong>Categoría:</strong> {{ receta.categoria }}</p>
-                    <p class="card-text"><strong>Ingredientes:</strong></p>
-                    <p class="card-text">{{ receta.ingredientes|linebreaks }}</p>
-                    <p class="card-text"><strong>Instrucciones:</strong></p>
-                    <p class="card-text">{{ receta.instrucciones|linebreaks }}</p>
+        {% if recetas %}
+            {% for receta in recetas %}
+                <div class="col-md-3">
+                   
                 </div>
-                <div class="card-footer">
-                    <a href="{% url 'detalle_receta' receta.id %}" class="btn btn-primary">Ver detalles</a>
+            {% endfor %}
+        {% else %}
+            <div class="col">
+                <p>No hay recetas todavía.</p>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            {% for receta in recetas %}
+            <div class="col-md-6 mb-3">
+                <div class="card horizontal-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            {% if receta.imagen %}
+                            <img src="{{ receta.imagen.url }}" alt="Imagen de la receta" class="img-fluid rounded" style="width: 250px; height: 250px;">
+                            {% else %}
+                            <img src="tu-imagen-predeterminada.jpg" alt="Imagen predeterminada" class="img-fluid rounded" style="width: 250px; height: 250px;">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ receta.titulo }}</h2>
+                                <p class="card-text"><strong>Categoría:</strong> {{ receta.categoria }}</p>
+                                <p class="card-text"><strong>Ingredientes:</strong></p>
+                                <p class="card-text">{{ receta.ingredientes|safe|slice:":100" }}{% if receta.ingredientes|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}"></a>{% endif %}</p>
+                                <p class="card-text"><strong>Instrucciones:</strong></p>
+                                <p class="card-text">{{ receta.instrucciones|safe|slice:":100" }}{% if receta.instrucciones|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}">Ver más</a>{% endif %}</p>
+                                <div class="mt-3">
+                                    <a href="{% url 'detalle_receta' receta.id %}" class="btn btn-primary mr-2">Ver detalles</a>
+                                    {% if user == receta.creador %}
+                                    <a href="{% url 'editar_receta' receta.id %}" class="btn btn-warning mr-2">Editar</a>
+                                    <form action="{% url 'eliminar_receta' receta.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 
