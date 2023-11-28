@@ -46,7 +46,7 @@
                                 <h2 class="card-title">{{ receta.titulo }}</h2>
                                 <p class="card-text"><strong>Categoría:</strong> {{ receta.categoria }}</p>
                                 <p class="card-text"><strong>Ingredientes:</strong></p>
-                                <p class="card-text">{{ receta.ingredientes|safe|slice:":100" }}{% if receta.ingredientes|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}"></a>{% endif %}</p>
+                                <p class="card-text">{{ receta.ingredientes|safe|slice:":10" }}{% if receta.ingredientes|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}"></a>{% endif %}</p>
                                 <p class="card-text"><strong>Instrucciones:</strong></p>
                                 <p class="card-text">{{ receta.instrucciones|safe|slice:":100" }}{% if receta.instrucciones|length > 50 %}...<a href="{% url 'detalle_receta' receta.id %}">Ver más</a>{% endif %}</p>
                                 <div class="mt-3">

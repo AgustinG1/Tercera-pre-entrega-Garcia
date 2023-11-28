@@ -1,0 +1,239 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Para contrarrestar el margin de las columnas */
+}
+
+.col-md-6 {
+    flex: 0 0 calc(50% - 20px); /* Ajusta el ancho de las columnas, teniendo en cuenta el margin */
+    max-width: calc(50% - 20px); /* Ajusta el ancho máximo para mantener el diseño */
+    margin: 10px; /* Crea espacio entre las columnas */
+}
+
+.horizontal-card {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px; /* Altura máxima de la tarjeta */
+    overflow: hidden; /* Oculta el desbordamiento */
+}
+
+.horizontal-card .card-body {
+    flex: 1;
+    overflow: auto; 
+}
+
+.horizontal-card img {
+    width: 100%;
+    height: auto;
+}
+/* Reducir el tamaño del texto para optimizar el espacio */
+.card-body {
+    font-size: 0.9rem;
+    line-height: 1.4; /* Aumenta el espacio entre líneas para una mejor legibilidad */
+}
+
+
+.card-body .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+
+.card-body p {
+    margin-bottom: 0.2rem;
+}
+
+/* Limitar la altura de los párrafos de ingredientes e instrucciones */
+.card-body .card-text:nth-child(4),
+.card-body .card-text:nth-child(6) {
+    max-height: initial; 
+    overflow: hidden;
+}
+
+
+/* Estilos para los botones */
+.btn {
+    border-radius: 20px; 
+    padding: 8px 16px;
+    transition: background-color 0.3s ease; 
+  }
+  
+  /* Estilo para el botón primario (Ver detalles) */
+  .btn-primary {
+    background-color: #3498db; /* Color base del botón primario */
+    color: #ffffff; /* Color del texto del botón primario */
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9; /* Color de fondo al pasar el mouse sobre el botón primario */
+  }
+  
+  /* Estilo para el botón de advertencia (Editar) */
+  .btn-warning {
+    background-color: #f39c12; /* Color base del botón de advertencia */
+    color: #ffffff; /* Color del texto del botón de advertencia */
+  }
+  
+  .btn-warning:hover {
+    background-color: #d68910; /* Color de fondo al pasar el mouse sobre el botón de advertencia */
+  }
+  
+  /* Estilo para el botón de peligro (Eliminar) */
+  .btn-danger {
+    background-color: #e74c3c; /* Color base del botón de peligro */
+    color: #ffffff; /* Color del texto del botón de peligro */
+  }
+  
+  .btn-danger:hover {
+    background-color: #c73a2f; /* Color de fondo al pasar el mouse sobre el botón de peligro */
+  }
+/* Estilo para el botón de éxito (Agregar una nueva receta) */
+.btn-success {
+    border-radius: 20px; /* Haciendo los bordes más redondeados */
+    background-color: #064663; /* Color base del botón de éxito */
+    color: #ffffff; /* Color del texto del botón de éxito */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar el color de fondo */
+  }
+  
+  .btn-success:hover {
+    background-color: #229954; /* Color de fondo al pasar el mouse sobre el botón de éxito */
+  }
+  
+  /* Estilo para el botón secundario (Volver a la página de inicio) */
+  .btn-secondary {
+    border-radius: 20px; /* Haciendo los bordes más redondeados */
+    background-color: #041C32; /* Color base del botón secundario */
+    color: #ffffff; /* Color del texto del botón secundario */
+    transition: background-color 0.3s ease; /* Transición suave al cambiar el color de fondo */
+  }
+  
+  .btn-secondary:hover {
+    background-color: #6c7578; /* Color de fondo al pasar el mouse sobre el botón secundario */
+  }
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    margin-bottom: 60px; /* Asegura que haya suficiente espacio para el footer */
+    padding-bottom: 60px; /* Ajusta el padding inferior del body para mantener espacio para el footer */
+  }
+  
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #041C32 !important;
+    
+  }
+  .footer a {
+    text-decoration: none; /* Quitar la decoración de los enlaces */
+    color: #ffffff; /* Color del texto */
+    transition: color 0.3s ease; /* Transición suave al cambiar el color del texto */
+  }
+  
+  /* Estilos para los enlaces al pasar el mouse sobre ellos */
+  .footer a:hover {
+    color: #ffffff;
+  }
+  
+  .navbar.bg-light {
+    background-color: #041C32 !important;
+  }
+
+body {
+  background-color: rgb(247, 241, 232) !important;
+}
+
+.navbar .navbar-brand,
+.navbar a {
+  color: #f5f5f5; 
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+}
+
+
+.navbar .navbar-brand:hover,
+.navbar a:hover {
+  color: #ECB365; 
+}
+
+.dropdown-menu .dropdown-item {
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    resize: vertical; /* Para permitir redimensionar textarea verticalmente */
+}
+
+.custom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+}
+
+.edit-profile-box {
+    max-width: 500px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-box p {
+    font-size: 1.1rem;
+}
+
+.edit-profile-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-form input[type="text"],
+.custom-form input[type="password"],
+.custom-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.custom-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.custom-btn:hover {
+    background-color: #0056b3;
+}
